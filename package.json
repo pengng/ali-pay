@@ -1,0 +1,18 @@
+{
+  "name": "alipay-sdk",
+  "version": "1.0.0",
+  "description": "Alipay Payments SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": " "
+  },
+  "keywords": [
+    "alipay 支付宝 接口 sdk 统一下单"
+  ],
+  "author": "pengng",
+  "license": "ISC",
+  "dependencies": {
+    "request-client": "^1.0.0",
+    "time-formater": "^1.0.1"
+  }
+}
