@@ -1,5 +1,5 @@
 {
-  "name": "alipay-sdk",
+  "name": "alipay-pay-sdk",
   "version": "1.0.0",
   "description": "Alipay Payments SDK",
   "main": "index.js",

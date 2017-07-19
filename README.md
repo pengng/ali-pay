@@ -10,7 +10,9 @@
 | app_id | string | 是 | APPID 即创建应用后生成。 |
 | charset | string | 否 | 请求使用的编码格式，如utf-8,gbk,gb2312等。默认utf-8。 |
 | sign_type | string | 否 | 商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2。默认为RSA2。 |
-| key | string | 是 | 开发者私钥，由开发者自己生成。 传入私钥的文本内容。 |
+| public_key | string | 是 | 开发者公钥，由开发者自己生成。 传入公钥的文本内容。 |
+| private_key | string | 是 | 开发者私钥，由开发者自己生成。 传入私钥的文本内容。 |
+| sandbox | boolean | 否 | 是否沙箱测试。默认`false` |
 
 ```javascript
 const Alipay = require('alipay-sdk')
@@ -26,6 +28,7 @@ const payClient = new Alipay({
 ### 方法
 
 - [`pay() 统一收单下单并支付页面接口`](#pay)
+- [`verify() 验签接口`](#verify)
 - [`refund() 统一收单交易退款接口`](#refund)
 - [`refundQuery() 统一收单交易退款查询接口`](#refundQuery)
 - [`query() 统一收单线下交易查询接口`](#query)
@@ -119,11 +122,19 @@ res.redirect(url)
 | 名称 | 类型 | 最大长度 | 必填 | 描述 | 示例 |
 | --- | --- |  --- | --- | --- | --- |
 | out_trade_no | String  | 是 | 64  | 商户网站唯一订单号 | 70501111111S001111119 |
-| trade_no  | String | 是 | 64  | 该交易在支付宝系统中的交易流水号。最长64位。 | 2016081121001004630200142207 |
-| total_amount | Price | 是 | 9 | 该笔订单的资金总额，单位为RMB-Yuan。取值范围为[0.01，100000000.00]，精确到小数点后两位。 | 9.00 |
-| seller_id | String | 是 | 16  | 收款支付宝账号对应的支付宝唯一用户号。 以2088开头的纯16位数字  | 2088111111116894 |
+| trade_no  | String | 是 | 64  | 该交易在支付宝系统中的交易流水号。<br/>最长64位。 | 2016081121001004630200142207 |
+| total_amount | Price | 是 | 9 | 该笔订单的资金总额，单位为RMB-Yuan。<br/>取值范围为[0.01，100000000.00]，<br/>精确到小数点后两位。 | 9.00 |
+| seller_id | String | 是 | 16  | 收款支付宝账号对应的支付宝唯一用户号。 <br/>以2088开头的纯16位数字  | 2088111111116894 |
 
 ### 页面回跳示例
 ```http
 https://m.alipay.com/GkSL?total_amount=0.10&timestamp=2016-11-02+18%3A34%3A19&sign=G3WI0czviMAOzS5t0fYaDgK32sGpjkkXYVFTpYMtgX8JaXLiGiUTO%2F2IHogcCFT96jBCLZ6IsNzd%2BmxkB%2FRuwG%2F7naQk1qReuORMkrB5cpBf9U40bIUoCmSNqtANsTE2UPV7GKegYG2RqoCRScTmeFAFHj5L7zsM%2BLuYb9mqN3g%3D&trade_no=2016110221001004330228438026&sign_type=RSA2&auth_app_id=2014073000007292&charset=UTF-8&seller_id=2088411964605312&method=alipay.trade.page.pay.return&app_id=2014073000007292&out_trade_no=20150g320g010101001&version=1.0 
 ```
+
+### verify
+验签接口。
+
+##### 参数
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| options | object or string | 是 | 支付宝 POST 到`notify_url`的主体数据。<br/>格式是`application/x-www-form-urlencoded`。<br/>可以直接传入或格式化成`object`后传入。 |
