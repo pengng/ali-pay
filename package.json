@@ -1,16 +1,30 @@
 {
-  "name": "alipay-pay-sdk",
-  "version": "1.0.0",
-  "description": "Alipay Payments SDK",
+  "name": "ali-pay",
+  "version": "0.0.2",
+  "description": "Alipay payments SDK",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
   "scripts": {
     "test": " "
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengng/ali-pay.git"
+  },
   "keywords": [
-    "alipay 支付宝 接口 sdk 统一下单"
+    "alipay",
+    "payments",
+    "sdk"
   ],
-  "author": "pengng",
+  "author": "yupeng.kuo <yupeng.kuo@gmail.com>",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pengng/ali-pay/issues"
+  },
+  "homepage": "https://github.com/pengng/ali-pay#readme",
   "dependencies": {
     "request-client": "^1.0.0",
     "time-formater": "^1.0.1"
