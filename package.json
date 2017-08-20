@@ -1,6 +1,6 @@
 {
   "name": "ali-pay",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Alipay payments SDK",
   "main": "index.js",
   "directories": {
